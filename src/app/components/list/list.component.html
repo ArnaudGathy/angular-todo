@@ -1,0 +1,40 @@
+<div>
+  <div class="text-center" *ngIf="isLoading">Loading ...</div>
+  <div *ngIf="!isLoading" class="space-y-4">
+    <div>
+      <select (change)="handleFilterChange($event)">
+        <option value="all">All</option>
+        <option value="completed">Completed</option>
+        <option value="uncompleted">Uncompleted</option>
+      </select>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <div
+        *ngFor="let todo of filteredTodos"
+        class="border border-amber-300 p-2 bg-amber-100 w-[300px] h-[300px] flex flex-col gap-2 justify-between items-center"
+      >
+        <div>
+          {{ todo.completed ? "✅" : "❌" }}
+          #{{ todo.id }} - {{ todo.title }}
+        </div>
+        <div>{{ todo.description }}</div>
+        <div class="space-x-2">
+          <button
+            type="button"
+            (click)="handleToggleCompletion(todo)"
+            class="border border-slate-400 px-4 py-1 bg-white hover:bg-black hover:text-white"
+          >
+            Mark as {{ todo.completed ? "not completed" : "completed" }}
+          </button>
+          <button
+            type="button"
+            (click)="handleDelete(todo.id)"
+            class="border border-slate-400 px-4 py-1 bg-white hover:bg-black hover:text-white"
+          >
+            🗑️
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

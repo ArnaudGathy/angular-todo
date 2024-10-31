@@ -1,0 +1,28 @@
+<div>
+  <form [formGroup]="addForm" (submit)="addTodo()" class="flex flex-col gap-2">
+    <div class="flex flex-col">
+      <label for="title">Title</label>
+      <div>
+        <input id="title" type="text" formControlName="title" required />
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="description">Description</label>
+      <div>
+        <input
+          id="description"
+          type="text"
+          formControlName="description"
+          required
+        />
+      </div>
+    </div>
+
+    <div>
+      <button type="submit" class="py-1 px-4 mt-4" [disabled]="!addForm.valid">
+        Add
+      </button>
+    </div>
+  </form>
+</div>
